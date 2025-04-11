@@ -7,9 +7,9 @@ There are 2 main folders:
 
 ## About the application
 
-The application stores products and provides a basic CRUD interface, including product prices.
+The application stores products and provides a basic CRUD interface, including sorting, paging and filtering.
 
-It also offers the ability to change currency using the National Bank of Poland (NBP) API.
+It also offers the ability to change currency of product prices using the National Bank of Poland (NBP) API.
 
 ## To run the application
 
