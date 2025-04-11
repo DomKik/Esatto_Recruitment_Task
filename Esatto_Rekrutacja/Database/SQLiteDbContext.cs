@@ -15,20 +15,32 @@ namespace Esatto_Recruitment_WinForms.Database
         public DbSet<Product> Products { get; set; }
         public DbSet<CurrencyInfo> Currencies { get; set; }
 
+        private static string _dbPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "database.db");
+
         public SQLiteDbContext()
         {
-
+            EnsureDatabaseCreated();
         }
+
         public SQLiteDbContext(DbContextOptions<SQLiteDbContext> options) : base(options)
         {
+            EnsureDatabaseCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string AppPath = AppDomain.CurrentDomain.BaseDirectory;
-            string dbPath = Path.Combine(AppPath, "database.db");
+            optionsBuilder.UseSqlite($"Data Source={_dbPath}");
+        }
 
-            optionsBuilder.UseSqlite($"Data Source={dbPath}");
+        private void EnsureDatabaseCreated()
+        {
+            if (!File.Exists(_dbPath))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(_dbPath)!);
+            }
+
+            this.Database.EnsureCreated();
         }
     }
+
 }
