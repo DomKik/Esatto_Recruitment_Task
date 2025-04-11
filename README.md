@@ -14,6 +14,7 @@ It also offers the ability to change currency of product prices using the Nation
 ## Technology
 
 Code: C# + .NET Core 8.0.7, Windows Forms
+
 Database: SQLite
 
 ## How to run the application
